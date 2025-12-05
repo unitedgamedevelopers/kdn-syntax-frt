@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88eb847fe1322094b92d1ec9dc05631f, type: 3}
+  m_Name: CardDataHolder
+  m_EditorClassIdentifier: 
+  cardDataHolder:
+  - cardID: 0
+    iconSprite: {fileID: 21300000, guid: 010b98c32b1a1c349bd86cb298d9e6c2, type: 3}
+  - cardID: 1
+    iconSprite: {fileID: 21300000, guid: b779d3159e691804da6215410e1bf1fe, type: 3}
+  - cardID: 2
+    iconSprite: {fileID: 21300000, guid: 579dbbad71435664aab703f23057ddca, type: 3}
+  - cardID: 3
+    iconSprite: {fileID: 21300000, guid: 726110d437549cd4c8c42fb3f0bd31fe, type: 3}
+  - cardID: 4
+    iconSprite: {fileID: 21300000, guid: 32d70b321316b9444b6bb7bc06487bcb, type: 3}
+  - cardID: 5
+    iconSprite: {fileID: 21300000, guid: 9973b92585ed7c245b5293c5cf0af2dd, type: 3}
+  - cardID: 6
+    iconSprite: {fileID: 21300000, guid: 3f58bd625304281459eb790eb513d7db, type: 3}
+  - cardID: 7
+    iconSprite: {fileID: 21300000, guid: 8d215cb8709f9a140aeff39fa40b3f30, type: 3}
+  - cardID: 8
+    iconSprite: {fileID: 21300000, guid: 8b4f7fc51082bc749881cf0a60d2908e, type: 3}
+  - cardID: 9
+    iconSprite: {fileID: 21300000, guid: f5cdc6dc822c825429f7e971855dd493, type: 3}
