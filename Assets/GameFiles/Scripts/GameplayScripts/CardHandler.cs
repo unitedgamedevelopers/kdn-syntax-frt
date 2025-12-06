@@ -23,12 +23,6 @@ public class CardHandler : MonoBehaviour, IPointerClickHandler
     #endregion
 
     #region Interface Functions
-    // Testing
-    private void Start()
-    {
-        SetupCard(CardsManager.Instance.cardDataHolder.RetrieveCardData());
-    }
-
     // On click event for card (Flips card when user click/touch any card)
     public void OnPointerClick(PointerEventData eventData)
     {

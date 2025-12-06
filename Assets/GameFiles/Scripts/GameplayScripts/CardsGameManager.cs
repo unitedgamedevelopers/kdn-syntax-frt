@@ -11,7 +11,7 @@ public class CardsGameManager : MonoBehaviour
     [SerializeField] private float cardCompareBuffer = 0f;  // Card comparison delay
 
     private CardHandler firstCardInPair = null;
-    public int TotalMatches { get; private set; }
+    private GameplayUIHandler gameplayUIHandler = null;
     #endregion
 
     #region MonoBehaviour Functions
@@ -25,12 +25,27 @@ public class CardsGameManager : MonoBehaviour
 
         Instance = this;
     }
+
+    private void Start()
+    {
+        // Setup gameplay UI handler reference
+        gameplayUIHandler = GameCanvasManager.Instance.Gameplay_UIHandler;
+    }
+    #endregion
+
+    #region Getter And Setter
+    public int TotalMatches { get; private set; }
+
+    public int TotalTurns { get; set; }
     #endregion
 
     #region Public Core Functions
     // Stores flipped card and triggers comparison when a pair is complete
     public void StoreFlippedCardData(CardHandler ch)
     {
+        TotalTurns--;
+        gameplayUIHandler.UpdateTurnsRemainingTMP("Total Turns:\n" + TotalTurns.ToString());
+
         if (firstCardInPair == null)
         {
             firstCardInPair = ch;
@@ -52,8 +67,8 @@ public class CardsGameManager : MonoBehaviour
 
         if (card_1.CurrentCardData.GetCardID == card_2.CurrentCardData.GetCardID)
         {
-            print("Match found!");
             TotalMatches++;
+            gameplayUIHandler.UpdateTotalMatchesTMP("Matches:\n" + TotalMatches.ToString());
         }
         else
         {

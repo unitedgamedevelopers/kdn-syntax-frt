@@ -11,6 +11,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] private GridLayoutGroup gridLayout = null;
     [SerializeField] private Transform gridParent = null;
     [SerializeField] private GridDataHolder gridDataHolder = null;
+    [SerializeField] private CardDataHolder cardDataHolder = null;
 
     private GridData gridData = null;
     #endregion
@@ -23,6 +24,9 @@ public class GridManager : MonoBehaviour
     public void GenerateGrid(int index)
     {
         gridData = gridDataHolder.GetGridDataByIndex(index);
+
+        // Finalize total turns player would have throughout the game
+        CardsGameManager.Instance.TotalTurns = gridData.TotalTurns;
 
         foreach (Transform c in gridParent)
         {
@@ -40,10 +44,32 @@ public class GridManager : MonoBehaviour
         float cellHeight = (parentRect.rect.height - (spacing.y * (gridData.Row - 1)) - padding.top - padding.bottom) / gridData.Row;
         gridLayout.cellSize = new Vector2(cellWidth, cellHeight);
 
-        int totalCards = gridData.Row * gridData.Column;
-        for (int i = 0; i < totalCards; i++)
+        // Core card spawning mechanism
+        List<CardData> dataPack = new List<CardData>();
+        // Store card pairs data in a list
+        int totalCardPairs = (gridData.Row * gridData.Column) / 2;
+        CardData dataTemp = null;
+        for (int i = 0; i < totalCardPairs; i++)
         {
-            Instantiate(cardPrefab, gridParent);
+            dataTemp = cardDataHolder.RetrieveCardData();
+            dataPack.Add(dataTemp);
+            dataPack.Add(dataTemp);
+        }
+
+        // Shuffle card data
+        for (int i = 0; i < dataPack.Count; i++)
+        {
+            int randomIndex = Random.Range(0, dataPack.Count);
+            dataTemp = dataPack[i];
+            dataPack[i] = dataPack[randomIndex];
+            dataPack[randomIndex] = dataTemp;
+        }
+
+        // Assign card data to spawned card prefabs
+        for (int i = 0; i < dataPack.Count; i++)
+        {
+            CardHandler ch = Instantiate(cardPrefab, gridParent).GetComponent<CardHandler>();
+            ch.SetupCard(dataPack[i]);
         }
     }
     #endregion

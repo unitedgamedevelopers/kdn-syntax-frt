@@ -17,6 +17,7 @@ public class GameplayUIHandler : MonoBehaviour
     private void OnEnable()
     {
         gridManager.GenerateGrid(mainMenuUIHandler.GridIndex);
+        UpdateTurnsRemainingTMP("Total Turns: " + CardsGameManager.Instance.TotalTurns.ToString());
     }
     #endregion
 

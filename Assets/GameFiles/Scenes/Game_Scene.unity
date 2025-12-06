@@ -229,6 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridSelectionDropdown: {fileID: 1017302054}
+  gridDataHolder: {fileID: 11400000, guid: bf4fb1b6b05ef034f98d5960a4778ff1, type: 2}
 --- !u!1 &255021275
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,6 +463,7 @@ RectTransform:
   - {fileID: 109510894}
   - {fileID: 639282271}
   - {fileID: 1012295617}
+  - {fileID: 1124106662}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -482,8 +484,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da64501825d51f342a7167b165fb72f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenuUIObj: {fileID: 248517959}
-  gameplayUIObj: {fileID: 109510893}
+  mainMenuUIHandler: {fileID: 248517961}
+  gameplayUIHandler: {fileID: 109510895}
   gameOverUIObj: {fileID: 639282270}
   victoryUIObj: {fileID: 1012295616}
 --- !u!1 &384688800
@@ -2231,7 +2233,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2x2 Grid
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2739,13 +2741,7 @@ MonoBehaviour:
   m_ItemImage: {fileID: 0}
   m_Value: 0
   m_Options:
-    m_Options:
-    - m_Text: 2x2 Grid
-      m_Image: {fileID: 0}
-    - m_Text: 3x3 Grid
-      m_Image: {fileID: 0}
-    - m_Text: 5x6 Grid
-      m_Image: {fileID: 0}
+    m_Options: []
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -3205,13 +3201,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1124106659}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -399.99997, y: -224.99998, z: 0}
+  m_LocalScale: {x: 0.41666663, y: 0.41666663, z: 0.41666663}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_Father: {fileID: 311779457}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1164549585
 GameObject:
@@ -4289,7 +4285,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1585011051}
-  - component: {fileID: 1585011052}
   - component: {fileID: 1585011053}
   m_Layer: 0
   m_Name: GameManager
@@ -4313,19 +4308,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1585011052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1585011050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3aef4f397f0b194488552adf3e3a51dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardDataHolder: {fileID: 11400000, guid: f28f379da6cba98469b619d8d70136c8, type: 2}
 --- !u!114 &1585011053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4539,6 +4521,7 @@ MonoBehaviour:
   gridLayout: {fileID: 1642770546}
   gridParent: {fileID: 1642770545}
   gridDataHolder: {fileID: 11400000, guid: bf4fb1b6b05ef034f98d5960a4778ff1, type: 2}
+  cardDataHolder: {fileID: 11400000, guid: f28f379da6cba98469b619d8d70136c8, type: 2}
 --- !u!1 &1662499527
 GameObject:
   m_ObjectHideFlags: 0

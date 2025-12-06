@@ -15,7 +15,13 @@ MonoBehaviour:
   gridDataPack:
   - row: 2
     col: 2
-  - row: 3
+    totalTurns: 6
+  - row: 2
     col: 3
+    totalTurns: 9
+  - row: 4
+    col: 3
+    totalTurns: 18
   - row: 5
     col: 6
+    totalTurns: 40

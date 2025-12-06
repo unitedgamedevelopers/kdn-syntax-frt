@@ -9,12 +9,15 @@ public class GridData
     [Header("Attributes")]
     [SerializeField] private int row = 0;
     [SerializeField] private int col = 0;
+    [SerializeField] private int totalTurns = 0;
     #endregion
 
     #region Getter And Setter
     public int Row => row;
 
     public int Column => col;
+
+    public int TotalTurns => totalTurns;
     #endregion
 }
 
@@ -27,6 +30,11 @@ public class GridDataHolder : ScriptableObject
     #endregion
 
     #region Public Core Functions
+    public int GetGridDataPackLength()
+    {
+        return gridDataPack.Count;
+    }
+
     public GridData GetGridDataByIndex(int index)
     {
         return gridDataPack[index];

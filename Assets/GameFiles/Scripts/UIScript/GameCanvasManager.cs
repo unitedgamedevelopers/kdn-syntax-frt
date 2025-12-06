@@ -8,8 +8,8 @@ public class GameCanvasManager : MonoBehaviour
     public static GameCanvasManager Instance { get; private set; }
 
     [Header("UI Screen Reference")]
-    [SerializeField] private GameObject mainMenuUIObj = null;
-    [SerializeField] private GameObject gameplayUIObj = null;
+    [SerializeField] private MainMenuUIHandler mainMenuUIHandler = null;
+    [SerializeField] private GameplayUIHandler gameplayUIHandler = null;
     [SerializeField] private GameObject gameOverUIObj = null;
     [SerializeField] private GameObject victoryUIObj = null;
     #endregion
@@ -27,6 +27,12 @@ public class GameCanvasManager : MonoBehaviour
     }
     #endregion
 
+    #region Getter And Setter
+    public MainMenuUIHandler MainMenu_UIHandler => mainMenuUIHandler;
+
+    public GameplayUIHandler Gameplay_UIHandler => gameplayUIHandler;
+    #endregion
+
     #region Public Core Functions
     // Switch UI screens on call
     public void SwitchCanvasUIScreen(UIScreen screen)
@@ -34,26 +40,26 @@ public class GameCanvasManager : MonoBehaviour
         switch (screen)
         {
             case UIScreen.MainMenuUI:
-                mainMenuUIObj.SetActive(true);
-                gameplayUIObj.SetActive(false);
+                mainMenuUIHandler.gameObject.SetActive(true);
+                gameplayUIHandler.gameObject.SetActive(false);
                 gameOverUIObj.SetActive(false);
                 victoryUIObj.SetActive(false);
                 break;
             case UIScreen.GameplayUI:
-                mainMenuUIObj.SetActive(false);
-                gameplayUIObj.SetActive(true);
+                mainMenuUIHandler.gameObject.SetActive(false);
+                gameplayUIHandler.gameObject.SetActive(true);
                 gameOverUIObj.SetActive(false);
                 victoryUIObj.SetActive(false);
                 break;
             case UIScreen.GameOverUI:
-                mainMenuUIObj.SetActive(false);
-                gameplayUIObj.SetActive(false);
+                mainMenuUIHandler.gameObject.SetActive(false);
+                gameplayUIHandler.gameObject.SetActive(false);
                 gameOverUIObj.SetActive(true);
                 victoryUIObj.SetActive(false);
                 break;
             case UIScreen.VictoryUI:
-                mainMenuUIObj.SetActive(false);
-                gameplayUIObj.SetActive(false);
+                mainMenuUIHandler.gameObject.SetActive(false);
+                gameplayUIHandler.gameObject.SetActive(false);
                 gameOverUIObj.SetActive(false);
                 victoryUIObj.SetActive(true);
                 break;
