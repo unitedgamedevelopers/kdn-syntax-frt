@@ -11,38 +11,71 @@ public class GameplayUIHandler : MonoBehaviour
     [SerializeField] private GridManager gridManager = null;
     [SerializeField] private TextMeshProUGUI totalMatchesTMP = null;
     [SerializeField] private TextMeshProUGUI turnsRemainingTMP = null;
+
+    private bool isLoadingSavedGame = false;
+    private CardsGameManager cardsGameManager = null;
     #endregion
 
     #region MonoBehaviour Functions
     private void OnEnable()
     {
-        gridManager.GenerateGrid(mainMenuUIHandler.GridIndex);
-        UpdateTurnsRemainingTMP("Total Turns: " + CardsGameManager.Instance.TotalTurns.ToString());
+        cardsGameManager = CardsGameManager.Instance;
+        if (!IsLoadingSavedGame)
+        {
+            gridManager.GenerateGrid(mainMenuUIHandler.GridIndex);
+            gridManager.SpawnCards();
+        }
+        else
+        {
+            gridManager.GenerateGrid(SavedGame.gridDataIndex);
+            gridManager.LoadSavedCards(SavedGame);
+        }
+
+        UpdateTurnsRemainingTMP(cardsGameManager.TotalTurns.ToString());
+        UpdateTotalMatchesTMP(cardsGameManager.TotalMatches.ToString());
     }
+    #endregion
+
+    #region Getter And Setter
+    public bool IsLoadingSavedGame { get => isLoadingSavedGame; set => isLoadingSavedGame = value; }
+
+    public SaveData SavedGame { get; set; }
     #endregion
 
     #region UI Functions
     public void OnClick_RetryBtn()
     {
-        // Todo: retry same grid 
+        gridManager.RegenerateGrid();
     }
 
     // Update total number of matches
     public void UpdateTotalMatchesTMP(string txt)
     {
-        totalMatchesTMP.SetText(txt);
+        totalMatchesTMP.SetText("Matches:\n"+txt);
     }
 
     // Update turns remaining
     public void UpdateTurnsRemainingTMP(string txt)
     {
-        turnsRemainingTMP.SetText(txt);
+        turnsRemainingTMP.SetText("Total Turns:\n"+txt);
     }
 
     // Save game on btn click
     public void OnClick_SaveGame()
     {
-        // Todo: save game on call
+        // Save current game
+        GameSaveLoadManager.ClearSavedGame();
+
+        List<CardState> cards = new List<CardState>();
+        foreach (CardHandler ch in gridManager.cardHandlers)
+        {
+            CardState cs = new CardState();
+            cs.cardDataIndex = gridManager.CardData_Holder.GetIndexOfCardData(ch.CurrentCardData);
+            cs.isMatched = ch.IsMatched;
+            cards.Add(cs);
+        }
+
+        GameSaveLoadManager.SaveGame(gridManager.gridDataIndex, CardsGameManager.Instance.TotalMatches, CardsGameManager.Instance.TotalTurns, cards);
     }
     #endregion
 }

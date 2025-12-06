@@ -34,7 +34,7 @@ public class CardsGameManager : MonoBehaviour
     #endregion
 
     #region Getter And Setter
-    public int TotalMatches { get; private set; }
+    public int TotalMatches { get; set; }
 
     public int TotalTurns { get; set; }
     #endregion
@@ -43,9 +43,6 @@ public class CardsGameManager : MonoBehaviour
     // Stores flipped card and triggers comparison when a pair is complete
     public void StoreFlippedCardData(CardHandler ch)
     {
-        TotalTurns--;
-        gameplayUIHandler.UpdateTurnsRemainingTMP("Total Turns:\n" + TotalTurns.ToString());
-
         if (firstCardInPair == null)
         {
             firstCardInPair = ch;
@@ -67,14 +64,19 @@ public class CardsGameManager : MonoBehaviour
 
         if (card_1.CurrentCardData.GetCardID == card_2.CurrentCardData.GetCardID)
         {
+            card_1.IsMatched = true;
+            card_2.IsMatched = true;
             TotalMatches++;
-            gameplayUIHandler.UpdateTotalMatchesTMP("Matches:\n" + TotalMatches.ToString());
+            gameplayUIHandler.UpdateTotalMatchesTMP(TotalMatches.ToString());
         }
         else
         {
             card_1.FoldCard();
             card_2.FoldCard();
         }
+
+        TotalTurns--;
+        gameplayUIHandler.UpdateTurnsRemainingTMP(TotalTurns.ToString());
     }
     #endregion
 }

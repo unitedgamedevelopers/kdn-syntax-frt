@@ -36,6 +36,7 @@ public class MainMenuUIHandler : MonoBehaviour
             od.text = $"{data.Column}x{data.Row} Grid";
             gridSelectionDropdown.options.Add(od);
         }
+        GridIndex = 0;
     }
     #endregion
 
@@ -50,9 +51,16 @@ public class MainMenuUIHandler : MonoBehaviour
         GridIndex = gridSelectionDropdown.value;
     }
 
+    // Load saved game on btn click
     public void OnClick_LoadGameBtn()
     {
-        // Todo: Work on loading saved progress
+        SaveData data = GameSaveLoadManager.LoadGame();
+        if (data != null)
+        {
+            GameCanvasManager.Instance.Gameplay_UIHandler.IsLoadingSavedGame = true;
+            GameCanvasManager.Instance.Gameplay_UIHandler.SavedGame = data;
+            GameCanvasManager.Instance.SwitchCanvasUIScreen(UIScreen.GameplayUI);
+        }
     }
     #endregion
 }

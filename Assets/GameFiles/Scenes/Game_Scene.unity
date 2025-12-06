@@ -833,7 +833,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 460658681}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 109510895}
+        m_TargetAssemblyTypeName: GameplayUIHandler, Assembly-CSharp
+        m_MethodName: OnClick_SaveGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &460658681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3582,7 +3594,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1280273942}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 109510895}
+        m_TargetAssemblyTypeName: GameplayUIHandler, Assembly-CSharp
+        m_MethodName: OnClick_RetryBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1280273942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4320,7 +4344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a781aa4d092a2043bf77950365c2181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardCompareBuffer: 0.5
+  cardCompareBuffer: 1
 --- !u!1 &1591154250
 GameObject:
   m_ObjectHideFlags: 0

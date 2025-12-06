@@ -23,17 +23,27 @@ public class CardDataHolder : ScriptableObject
 {
     #region Properties
     [Header("Attributes")]
-    [SerializeField] private CardData[] cardDataHolder = null;
+    [SerializeField] private List<CardData> cardDataHolder = new List<CardData>();
 
     private int cardDataIndex = 0;
     #endregion
 
     #region Public Core Functions
     // Get random card data which includes cardID and card icon sprite
-    public CardData RetrieveCardData()
+    public CardData RetrieveRandomCardData()
     {
-        cardDataIndex = Random.Range(0, cardDataHolder.Length);
+        cardDataIndex = Random.Range(0, cardDataHolder.Count);
         return cardDataHolder[cardDataIndex];
+    }
+
+    public CardData RetrieveCardDataByIndex(int index)
+    {
+        return cardDataHolder[index];
+    }
+
+    public int GetIndexOfCardData(CardData data)
+    {
+        return cardDataHolder.IndexOf(data);
     }
     #endregion
 }

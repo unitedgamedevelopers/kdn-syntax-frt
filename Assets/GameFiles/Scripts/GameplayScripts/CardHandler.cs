@@ -20,6 +20,8 @@ public class CardHandler : MonoBehaviour, IPointerClickHandler
 
     #region Getter And Setter
     public CardData CurrentCardData { get; set; }
+
+    public bool IsMatched { get; set; }
     #endregion
 
     #region Interface Functions
@@ -46,10 +48,24 @@ public class CardHandler : MonoBehaviour, IPointerClickHandler
         cardIconImg.sprite = CurrentCardData.GetIconSprite;
     }
 
+    // Setup card on call - check for match
+    public void SetupCard(CardData data, bool isMatched)
+    {
+        IsMatched = isMatched;
+        CurrentCardData = data;
+        cardIconImg.sprite = CurrentCardData.GetIconSprite;
+
+        if (IsMatched)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+            cardIconImg.enabled = true;
+        }
+    }
+
     // Reset card/Fold card
     public void FoldCard()
     {
-        StartCoroutine(FlipCard(!isFrontVisible));
+        StartCoroutine(FlipCard(false));
     }
     #endregion
 
