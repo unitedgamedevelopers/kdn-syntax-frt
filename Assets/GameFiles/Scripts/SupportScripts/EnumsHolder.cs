@@ -12,3 +12,11 @@ public enum Card_ID
     Triangle,
     None
 };  
+
+public enum UIScreen
+{
+    MainMenuUI,
+    GameplayUI,
+    GameOverUI,
+    VictoryUI
+};

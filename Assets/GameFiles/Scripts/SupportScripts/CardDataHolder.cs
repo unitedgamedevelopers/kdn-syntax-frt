@@ -18,7 +18,7 @@ public class CardData   // Card data class which includes cardID and card icon s
     #endregion
 }
 
-[CreateAssetMenu(fileName = "CardDataHolder", menuName = "ScriptableObject/CardDataHolder")]
+[CreateAssetMenu(fileName = "CardDataHolder", menuName = "ScriptableObjects/CardDataHolder")]
 public class CardDataHolder : ScriptableObject
 {
     #region Properties
