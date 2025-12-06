@@ -51,7 +51,7 @@ public class GridManager : MonoBehaviour
     {
         // Set total turns count for player and reset player score
         CardsGameManager.Instance.TotalTurns = gridData.TotalTurns;
-        CardsGameManager.Instance.TotalMatches = 0;
+        CardsGameManager.Instance.TotalPlayerMatches = 0;
 
         // Core card spawning mechanism
         List<CardData> dataPack = new List<CardData>();
@@ -83,6 +83,7 @@ public class GridManager : MonoBehaviour
             cardHandlers.Add(ch);
             ch.SetupCard(dataPack[i]);
         }
+        CardsGameManager.Instance.TotalPairToMatch = cardHandlers.Count / 2;
     }
 
     // Load and retrieve saved cards data
@@ -90,7 +91,7 @@ public class GridManager : MonoBehaviour
     {
         // Set total turns count for player and reset player score
         CardsGameManager.Instance.TotalTurns = data.totalTurnsLeft;
-        CardsGameManager.Instance.TotalMatches = data.totalMatches;
+        CardsGameManager.Instance.TotalPlayerMatches = data.totalMatches;
 
         cardHandlers.Clear();
         // Assign card data to spawned card prefabs
@@ -101,6 +102,7 @@ public class GridManager : MonoBehaviour
             print(data.cards[i].cardDataIndex);
             ch.SetupCard(CardData_Holder.RetrieveCardDataByIndex(data.cards[i].cardDataIndex), data.cards[i].isMatched);
         }
+        CardsGameManager.Instance.TotalPairToMatch = cardHandlers.Count / 2;
     }
 
     // Regenerate entire grid

@@ -17,6 +17,6 @@ public enum UIScreen
 {
     MainMenuUI,
     GameplayUI,
-    GameOverUI,
+    DefeatUI,
     VictoryUI
 };

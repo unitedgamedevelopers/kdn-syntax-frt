@@ -14,7 +14,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip cardFlipSFX = null;
     [SerializeField] private AudioClip cardMatchSFX = null;
     [SerializeField] private AudioClip cardMismatchSFX = null;
-    [SerializeField] private AudioClip gameOverSFX = null;
+    [SerializeField] private AudioClip defeatSFX = null;
     [SerializeField] private AudioClip victorySFX = null;
     #endregion
 
@@ -47,9 +47,9 @@ public class AudioManager : MonoBehaviour
         audioSource.PlayOneShot(cardMismatchSFX);
     }
 
-    public void PlayGameOverSFX()
+    public void PlayDefeatSFX()
     {
-        audioSource.PlayOneShot(gameOverSFX);
+        audioSource.PlayOneShot(defeatSFX);
     }
 
     public void PlayVictorySFX()

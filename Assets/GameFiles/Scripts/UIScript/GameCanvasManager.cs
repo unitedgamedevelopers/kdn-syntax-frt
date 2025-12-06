@@ -10,8 +10,7 @@ public class GameCanvasManager : MonoBehaviour
     [Header("UI Screen Reference")]
     [SerializeField] private MainMenuUIHandler mainMenuUIHandler = null;
     [SerializeField] private GameplayUIHandler gameplayUIHandler = null;
-    [SerializeField] private GameObject gameOverUIObj = null;
-    [SerializeField] private GameObject victoryUIObj = null;
+    [SerializeField] private GameOverUIHandler gameOverUIHandler = null;
     #endregion
 
     #region MonoBehaviour Functions
@@ -24,6 +23,8 @@ public class GameCanvasManager : MonoBehaviour
         }
 
         Instance = this;
+
+        SwitchCanvasUIScreen(UIScreen.MainMenuUI);
     }
     #endregion
 
@@ -42,30 +43,24 @@ public class GameCanvasManager : MonoBehaviour
             case UIScreen.MainMenuUI:
                 mainMenuUIHandler.gameObject.SetActive(true);
                 gameplayUIHandler.gameObject.SetActive(false);
-                gameOverUIObj.SetActive(false);
-                victoryUIObj.SetActive(false);
+                gameOverUIHandler.gameObject.SetActive(false);
                 break;
             case UIScreen.GameplayUI:
                 mainMenuUIHandler.gameObject.SetActive(false);
                 gameplayUIHandler.gameObject.SetActive(true);
-                gameOverUIObj.SetActive(false);
-                victoryUIObj.SetActive(false);
+                gameOverUIHandler.gameObject.SetActive(false);
                 break;
-            case UIScreen.GameOverUI:
+            case UIScreen.DefeatUI:
                 mainMenuUIHandler.gameObject.SetActive(false);
                 gameplayUIHandler.gameObject.SetActive(false);
-                gameOverUIObj.SetActive(true);
-                victoryUIObj.SetActive(false);
-
-                AudioManager.Instance.PlayGameOverSFX();
+                gameOverUIHandler.gameObject.SetActive(true);
+                gameOverUIHandler.DisplayDefeatUI();
                 break;
             case UIScreen.VictoryUI:
                 mainMenuUIHandler.gameObject.SetActive(false);
                 gameplayUIHandler.gameObject.SetActive(false);
-                gameOverUIObj.SetActive(false);
-                victoryUIObj.SetActive(true);
-
-                AudioManager.Instance.PlayVictorySFX();
+                gameOverUIHandler.gameObject.SetActive(true);
+                gameOverUIHandler.DisplayVictoryUI();
                 break;
         }
     }

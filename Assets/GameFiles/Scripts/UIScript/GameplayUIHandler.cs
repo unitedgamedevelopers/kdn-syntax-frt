@@ -32,7 +32,7 @@ public class GameplayUIHandler : MonoBehaviour
         }
 
         UpdateTurnsRemainingTMP(cardsGameManager.TotalTurns.ToString());
-        UpdateTotalMatchesTMP(cardsGameManager.TotalMatches.ToString());
+        UpdateTotalMatchesTMP(cardsGameManager.TotalPlayerMatches.ToString());
     }
     #endregion
 
@@ -75,7 +75,7 @@ public class GameplayUIHandler : MonoBehaviour
             cards.Add(cs);
         }
 
-        GameSaveLoadManager.SaveGame(gridManager.gridDataIndex, CardsGameManager.Instance.TotalMatches, CardsGameManager.Instance.TotalTurns, cards);
+        GameSaveLoadManager.SaveGame(gridManager.gridDataIndex, CardsGameManager.Instance.TotalPlayerMatches, CardsGameManager.Instance.TotalTurns, cards);
     }
     #endregion
 }

@@ -34,7 +34,9 @@ public class CardsGameManager : MonoBehaviour
     #endregion
 
     #region Getter And Setter
-    public int TotalMatches { get; set; }
+    public int TotalPlayerMatches { get; set; }
+
+    public int TotalPairToMatch { get; set; }
 
     public int TotalTurns { get; set; }
     #endregion
@@ -68,8 +70,8 @@ public class CardsGameManager : MonoBehaviour
 
             card_1.IsMatched = true;
             card_2.IsMatched = true;
-            TotalMatches++;
-            gameplayUIHandler.UpdateTotalMatchesTMP(TotalMatches.ToString());
+            TotalPlayerMatches++;
+            gameplayUIHandler.UpdateTotalMatchesTMP(TotalPlayerMatches.ToString());
         }
         else
         {
@@ -81,6 +83,15 @@ public class CardsGameManager : MonoBehaviour
 
         TotalTurns--;
         gameplayUIHandler.UpdateTurnsRemainingTMP(TotalTurns.ToString());
+
+        if (TotalTurns <= 0)
+        {
+            GameCanvasManager.Instance.SwitchCanvasUIScreen(UIScreen.DefeatUI);
+        }
+        else if (TotalPairToMatch == TotalPlayerMatches)
+        {
+            GameCanvasManager.Instance.SwitchCanvasUIScreen(UIScreen.VictoryUI);
+        }
     }
     #endregion
 }
