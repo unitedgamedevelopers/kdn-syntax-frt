@@ -56,12 +56,16 @@ public class GameCanvasManager : MonoBehaviour
                 gameplayUIHandler.gameObject.SetActive(false);
                 gameOverUIObj.SetActive(true);
                 victoryUIObj.SetActive(false);
+
+                AudioManager.Instance.PlayGameOverSFX();
                 break;
             case UIScreen.VictoryUI:
                 mainMenuUIHandler.gameObject.SetActive(false);
                 gameplayUIHandler.gameObject.SetActive(false);
                 gameOverUIObj.SetActive(false);
                 victoryUIObj.SetActive(true);
+
+                AudioManager.Instance.PlayVictorySFX();
                 break;
         }
     }

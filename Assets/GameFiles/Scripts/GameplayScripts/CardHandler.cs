@@ -30,6 +30,7 @@ public class CardHandler : MonoBehaviour, IPointerClickHandler
     {
         if (!isFlippingCard)
         {
+            AudioManager.Instance.PlayCardFlipSFX();
             StartCoroutine(FlipCard(!isFrontVisible));
 
             if (!isFrontVisible)

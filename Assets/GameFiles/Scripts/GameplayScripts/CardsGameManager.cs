@@ -64,6 +64,8 @@ public class CardsGameManager : MonoBehaviour
 
         if (card_1.CurrentCardData.GetCardID == card_2.CurrentCardData.GetCardID)
         {
+            AudioManager.Instance.PlayCardMatchSFX();
+
             card_1.IsMatched = true;
             card_2.IsMatched = true;
             TotalMatches++;
@@ -71,6 +73,8 @@ public class CardsGameManager : MonoBehaviour
         }
         else
         {
+            AudioManager.Instance.PlayCardMismatchSFX();
+
             card_1.FoldCard();
             card_2.FoldCard();
         }
