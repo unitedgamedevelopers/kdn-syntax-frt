@@ -35,6 +35,11 @@ public class CardHandler : MonoBehaviour, IPointerClickHandler
         if (!isFlippingCard)
         {
             StartCoroutine(FlipCard(!isFrontVisible));
+
+            if (!isFrontVisible)
+            {
+                CardsGameManager.Instance.StoreFlippedCardData(this);
+            }
         }
     }
     #endregion
@@ -45,6 +50,12 @@ public class CardHandler : MonoBehaviour, IPointerClickHandler
     {
         CurrentCardData = data;
         cardIconImg.sprite = CurrentCardData.GetIconSprite;
+    }
+
+    // Reset card/Fold card
+    public void FoldCard()
+    {
+        StartCoroutine(FlipCard(!isFrontVisible));
     }
     #endregion
 
@@ -63,7 +74,7 @@ public class CardHandler : MonoBehaviour, IPointerClickHandler
             elapsed += Time.deltaTime;
             float t = elapsed / flipDuration;
 
-            transform.rotation = Quaternion.Slerp(startRot, endRot, t);
+            transform.rotation = Quaternion.Lerp(startRot, endRot, t);
         
             if (t>=0.5f && cardIconImg.enabled != showFront)
             {
