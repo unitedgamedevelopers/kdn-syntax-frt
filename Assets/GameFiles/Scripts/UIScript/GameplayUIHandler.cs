@@ -11,6 +11,7 @@ public class GameplayUIHandler : MonoBehaviour
     [SerializeField] private GridManager gridManager = null;
     [SerializeField] private TextMeshProUGUI totalMatchesTMP = null;
     [SerializeField] private TextMeshProUGUI turnsRemainingTMP = null;
+    [SerializeField] private TextMeshProUGUI playerScoreTMP = null;
 
     private bool isLoadingSavedGame = false;
     private CardsGameManager cardsGameManager = null;
@@ -32,7 +33,8 @@ public class GameplayUIHandler : MonoBehaviour
         }
 
         UpdateTurnsRemainingTMP(cardsGameManager.TotalTurns.ToString());
-        UpdateTotalMatchesTMP(cardsGameManager.TotalPlayerMatches.ToString());
+        UpdateTotalMatchesTMP(cardsGameManager.TotalPlayerCardMatches.ToString());
+        UpdatePlayerScoreTMP(cardsGameManager.PlayerScore.ToString());
     }
     #endregion
 
@@ -46,6 +48,10 @@ public class GameplayUIHandler : MonoBehaviour
     public void OnClick_RetryBtn()
     {
         gridManager.RegenerateGrid();
+
+        UpdateTurnsRemainingTMP(cardsGameManager.TotalTurns.ToString());
+        UpdateTotalMatchesTMP(cardsGameManager.TotalPlayerCardMatches.ToString());
+        UpdatePlayerScoreTMP(cardsGameManager.PlayerScore.ToString());
     }
 
     // Update total number of matches
@@ -58,6 +64,12 @@ public class GameplayUIHandler : MonoBehaviour
     public void UpdateTurnsRemainingTMP(string txt)
     {
         turnsRemainingTMP.SetText("Total Turns:\n"+txt);
+    }
+
+    // Update player score
+    public void UpdatePlayerScoreTMP(string txt)
+    {
+        playerScoreTMP.SetText("Score: " + txt);
     }
 
     // Save game on btn click
@@ -75,7 +87,7 @@ public class GameplayUIHandler : MonoBehaviour
             cards.Add(cs);
         }
 
-        GameSaveLoadManager.SaveGame(gridManager.gridDataIndex, CardsGameManager.Instance.TotalPlayerMatches, CardsGameManager.Instance.TotalTurns, cards);
+        GameSaveLoadManager.SaveGame(gridManager.gridDataIndex, cardsGameManager.TotalPlayerCardMatches, cardsGameManager.TotalTurns, cardsGameManager.PlayerScore, cardsGameManager.playerScoreCombo, cards);
     }
     #endregion
 }

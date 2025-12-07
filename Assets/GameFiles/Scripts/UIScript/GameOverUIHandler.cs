@@ -11,14 +11,16 @@ public class GameOverUIHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI gameOverUIHeaderTMP = null;
     [SerializeField] private TextMeshProUGUI totalMatchesTMP = null;
     [SerializeField] private TextMeshProUGUI totalTurnsLeftTMP = null;
+    [SerializeField] private TextMeshProUGUI playerScoreTMP = null;
     #endregion
 
     #region Public Core Functions
     public void DisplayVictoryUI()
     {
         gameOverUIHeaderTMP.SetText("Victory");
-        totalMatchesTMP.SetText("Matches: " + CardsGameManager.Instance.TotalPlayerMatches);
+        totalMatchesTMP.SetText("Matches: " + CardsGameManager.Instance.TotalPlayerCardMatches);
         totalTurnsLeftTMP.SetText("Turns Left: " + CardsGameManager.Instance.TotalTurns);
+        playerScoreTMP.SetText("Score: " + CardsGameManager.Instance.PlayerScore);
 
         AudioManager.Instance.PlayVictorySFX();
     }
@@ -26,8 +28,9 @@ public class GameOverUIHandler : MonoBehaviour
     public void DisplayDefeatUI()
     {
         gameOverUIHeaderTMP.SetText("Defeat");
-        totalMatchesTMP.SetText("Matches: " + CardsGameManager.Instance.TotalPlayerMatches + " - Matches To Win: " + CardsGameManager.Instance.TotalPairToMatch);
+        totalMatchesTMP.SetText("Matches: " + CardsGameManager.Instance.TotalPlayerCardMatches + " - Matches To Win: " + CardsGameManager.Instance.TotalPairToMatch);
         totalTurnsLeftTMP.SetText("Turns Left: " + CardsGameManager.Instance.TotalTurns);
+        playerScoreTMP.SetText("Score: " + CardsGameManager.Instance.PlayerScore);
 
         AudioManager.Instance.PlayDefeatSFX();
     }

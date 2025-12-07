@@ -8,6 +8,8 @@ public class SaveData
     public int gridDataIndex;
     public int totalMatches;
     public int totalTurnsLeft;
+    public int playerScore;
+    public int playerScoreCombo;
     public List<CardState> cards;
 }
 
@@ -26,13 +28,15 @@ public class GameSaveLoadManager : MonoBehaviour
 
     #region Public Core Functions
     // Save game on call
-    public static void SaveGame(int gridDataIndex, int totalMatches, int totalTurnsLeft, List<CardState> cards)
+    public static void SaveGame(int gridDataIndex, int totalMatches, int totalTurnsLeft, int playerScore, int playerScoreCombo, List<CardState> cards)
     {
         SaveData data = new SaveData
         {
             gridDataIndex = gridDataIndex,
             totalMatches = totalMatches,
             totalTurnsLeft = totalTurnsLeft,
+            playerScore = playerScore,
+            playerScoreCombo = playerScoreCombo,
             cards = cards
         };
 

@@ -12,6 +12,7 @@ public class CardsGameManager : MonoBehaviour
 
     private CardHandler firstCardInPair = null;
     private GameplayUIHandler gameplayUIHandler = null;
+    internal int playerScoreCombo = 1;
     #endregion
 
     #region MonoBehaviour Functions
@@ -34,11 +35,13 @@ public class CardsGameManager : MonoBehaviour
     #endregion
 
     #region Getter And Setter
-    public int TotalPlayerMatches { get; set; }
+    public int TotalPlayerCardMatches { get; set; }
 
     public int TotalPairToMatch { get; set; }
 
     public int TotalTurns { get; set; }
+
+    public int PlayerScore { get; set; }
     #endregion
 
     #region Public Core Functions
@@ -56,6 +59,12 @@ public class CardsGameManager : MonoBehaviour
             firstCardInPair = null;
         }
     }
+
+    // Reset player score combo to 1
+    public void ResetPlayerScoreCombo()
+    {
+        playerScoreCombo = 1;
+    }
     #endregion
 
     #region Coroutines
@@ -70,12 +79,19 @@ public class CardsGameManager : MonoBehaviour
 
             card_1.IsMatched = true;
             card_2.IsMatched = true;
-            TotalPlayerMatches++;
-            gameplayUIHandler.UpdateTotalMatchesTMP(TotalPlayerMatches.ToString());
+            TotalPlayerCardMatches++;
+
+            PlayerScore += playerScoreCombo;
+            playerScoreCombo++;
+
+            gameplayUIHandler.UpdateTotalMatchesTMP(TotalPlayerCardMatches.ToString());
+            gameplayUIHandler.UpdatePlayerScoreTMP(PlayerScore.ToString());
         }
         else
         {
             AudioManager.Instance.PlayCardMismatchSFX();
+            // Reset score combo
+            ResetPlayerScoreCombo();
 
             card_1.FoldCard();
             card_2.FoldCard();
@@ -88,7 +104,7 @@ public class CardsGameManager : MonoBehaviour
         {
             GameCanvasManager.Instance.SwitchCanvasUIScreen(UIScreen.DefeatUI);
         }
-        else if (TotalPairToMatch == TotalPlayerMatches)
+        else if (TotalPairToMatch == TotalPlayerCardMatches)
         {
             GameCanvasManager.Instance.SwitchCanvasUIScreen(UIScreen.VictoryUI);
         }
